@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tasks</title>
+	<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>Tasks</h1>
+    <h2>Non-Completed Tasks</h2>
+    <ul>
+		{% if empty_non_completed %}
+		<p>No tasks to display.</p>
+	  	{% else %}
+			{% for task in non_completed %}
+			<li class="non-completed">
+				<form method="POST" action="/complete_task/{{ task[0] }}">
+					<div style="float: left;">
+						<input type="checkbox" name="completed" value="true" 
+							id="task{{ task[0] }}" {% if task[4] %} checked {% endif %}
+							onchange="this.form.submit()">
+						<label for="task{{ task[0] }}" style="display: inline-block;">Title: {{ task[1] }} - Description: {{ task[2] }} - Added on: {{ task[3] }}</label>
+					</div>
+				</form>
+				<form method="POST" action="/delete_task/{{ task[0] }}" style="float: left;">
+					<button type="submit" class="delete-button">Delete</button>
+				</form>
+				<div style="clear: both;"></div>
+			</li>
+			{% endfor %}
+		{% endif %}
+    </ul>
+    <h2>Completed Tasks</h2>
+    <ul>
+		{% if empty_completed %}
+		<p>No tasks to display.</p>
+		  {% else %}
+		<div class="completed-tasks">
+        {% for task in completed %}
+		<p>
+            <li class="completed">Title: {{ task[1] }} - Description: {{ task[2] }} - Added on: {{ task[3] }}</li><span class="completed-date">- Completed on: {{ task[5] }}</span>
+		</p>
+        {% endfor %}
+		</div>
+		{% endif %}
+    </ul>
+    <a href="/add_task">Add Task</a>
+</body>
+</html>
