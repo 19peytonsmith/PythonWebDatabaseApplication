@@ -1,25 +1,28 @@
 /* style.css used to style front-end components */
 
+/* Primary Author: Julien Denis */
+/* Current Semester: Spring 2023 */
+
 .completed-tasks p {
     display: block;
-  }
+}
   
-  .completed {
+.completed {
     display: inline-block;
     text-decoration: line-through
-  }
+}
   
-  .completed-date {
+.completed-date {
     display: inline-block;
     margin-left: 10px; /* You can adjust the margin to increase or decrease the space between the title and date */
-  }
+}
 
-  .delete-button {
+.delete-button {
     background-color: #ff0000;
     color: #fff;
     border: none;
     padding: 5px 10px;
     margin-left: 10px;
     cursor: pointer;
-  }
+}
   
