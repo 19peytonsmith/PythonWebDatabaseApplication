@@ -1,26 +1,36 @@
+<!-- tasks.html used to display all tasks -->
+<!-- Note: task[0] = id, task[1] = title, task[2] = description, task[3] = date_added, task[4] = is_completed, task[5] = date_completed-->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Tasks</title>
+	<!-- Reference external styling sheet -->
 	<link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <h1>Tasks</h1>
     <h2>Non-Completed Tasks</h2>
     <ul>
+		<!-- Uses Jinja to write logic within the html -->
+		<!-- If there are no non_completed tasks, write 'No tasks to display' -->
 		{% if empty_non_completed %}
-		<p>No tasks to display.</p>
+			<p>No tasks to display.</p>
 	  	{% else %}
+			<!-- Loop through all non_completed tasks -->
 			{% for task in non_completed %}
 			<li class="non-completed">
+				<!-- Form used for whenever a user click the checkbox, go to complete_task given the id -->
 				<form method="POST" action="/complete_task/{{ task[0] }}">
 					<div style="float: left;">
+						<!-- Checkbox input, once clicked, it will submit the form -->
 						<input type="checkbox" name="completed" value="true" 
 							id="task{{ task[0] }}" {% if task[4] %} checked {% endif %}
 							onchange="this.form.submit()">
+						<!-- Display's the rest of the task info -->
 						<label for="task{{ task[0] }}" style="display: inline-block;">Title: {{ task[1] }} - Description: {{ task[2] }} - Added on: {{ task[3] }}</label>
 					</div>
 				</form>
+				<!-- Form used to delete a specific task, once the button is pressed it will go to delete_task given the id -->
 				<form method="POST" action="/delete_task/{{ task[0] }}" style="float: left;">
 					<button type="submit" class="delete-button">Delete</button>
 				</form>
@@ -31,18 +41,22 @@
     </ul>
     <h2>Completed Tasks</h2>
     <ul>
+		<!-- If there are no completed tasks, write 'No tasks to display' -->
 		{% if empty_completed %}
-		<p>No tasks to display.</p>
-		  {% else %}
-		<div class="completed-tasks">
-        {% for task in completed %}
-		<p>
-            <li class="completed">Title: {{ task[1] }} - Description: {{ task[2] }} - Added on: {{ task[3] }}</li><span class="completed-date">- Completed on: {{ task[5] }}</span>
-		</p>
-        {% endfor %}
-		</div>
+			<p>No tasks to display.</p>
+		{% else %}
+			<div class="completed-tasks">
+			<!-- Loop through all completed tasks -->
+			{% for task in completed %}
+				<!-- Show the task info -->
+				<p>
+					<li class="completed">Title: {{ task[1] }} - Description: {{ task[2] }} - Added on: {{ task[3] }}</li><span class="completed-date">- Completed on: {{ task[5] }}</span>
+				</p>
+			{% endfor %}
+			</div>
 		{% endif %}
     </ul>
+	<!-- Once clicked, it will go to add_task and show the form -->
     <a href="/add_task">Add Task</a>
 </body>
 </html>
