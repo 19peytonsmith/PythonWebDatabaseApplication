@@ -24,6 +24,17 @@ logger.addHandler(file_handler)
 
 app = Flask(__name__)
 
+def getLastRow():
+    # Try to get last row from tasks, if unsuccessful log the error
+    try:
+        cursor = db.cursor()
+        # SQL query to get last inserted id
+        cursor.execute("SELECT id FROM tasks WHERE date = (SELECT MAX(date) FROM tasks);")
+        return cursor.fetchone()[0]
+    except Error as e:
+        logger.error(f'Error getting last row from database: {e}')
+        return 'An error occurred while retrieving last row'
+
 # Primary Author: Peyton Smith
 # Current Semester: Spring 2023
 # Connects to the mySQL server running 
