@@ -1,5 +1,5 @@
 import unittest
-from app import app, getLastRow
+from main import app, getLastRow
 
 # Primary Author: Peyton Smith
 # Current Semester: Spring 2023

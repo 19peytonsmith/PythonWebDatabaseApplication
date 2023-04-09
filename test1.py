@@ -1,5 +1,5 @@
 import unittest
-from app import app
+from main import app
 
 # Primary Author: Peyton Smith
 # Current Semester: Spring 2023
