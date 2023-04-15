@@ -3,26 +3,68 @@
 /* Primary Author: Julien Denis */
 /* Current Semester: Spring 2023 */
 
-.completed-tasks p {
-    display: block;
-}
+body {
+    font-family: Arial, sans-serif;
+  }
   
-.completed {
-    display: inline-block;
-    text-decoration: line-through
-}
+  h1 {
+    text-align: center;
+  }
   
-.completed-date {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  .completed-tasks {
     display: inline-block;
-    margin-left: 10px; /* You can adjust the margin to increase or decrease the space between the title and date */
-}
-
-.delete-button {
+    text-decoration: line-through;
+  }
+  
+  .pending-tasks {
+    display: inline-block;
+  }
+  
+  .completed-date,
+  .pending-date {
+    display: inline-block;
+    margin-left: 10px;
+    font-style: italic;
+  }
+  
+  .delete-button {
     background-color: #ff0000;
     color: #fff;
     border: none;
     padding: 5px 10px;
     margin-left: 10px;
     cursor: pointer;
-}
+  }
+
+  
+  .task {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  .delete-button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .delete-button:hover {
+    background-color: #e60000;
+  }
   
